@@ -61,8 +61,6 @@ async function registrarCliente() {
     alert("Cliente registrado con éxito.");
     cargarClientes();
 
-    nombre.value = "";
-    email.value = ""
 }
 
 // Crear un pedido
