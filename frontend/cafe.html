@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos de Café</title>
+    <link rel="stylesheet" href="assets/styles/styles.css">
+</head>
+<body>
+    <h1>Pedidos de Café</h1>
+
+    <h2>Registrar Cliente</h2>
+    <input type="text" id="nombre" placeholder="Nombre">
+    <input type="email" id="email" placeholder="Email">
+    <button onclick="registrarCliente()">Registrar</button>
+
+    <h2>Crear Pedido</h2>
+    <select id="clientesDropdown">
+        <option value="">Selecciona un cliente</option>
+    </select>
+    <select id="productosDropdown">
+        <option value="">Selecciona un producto</option>
+    </select>
+    <input type="number" id="cantidad" placeholder="Cantidad" min="1">
+    <button onclick="crearPedido()">Hacer Pedido</button>
+
+    <h2>Pedidos</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Pedido ID</th>
+                <th>Cliente</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody id="pedidosTable"></tbody>
+    </table>
+
+    <script src="assets/scripts/scripts.js"></script>
+</body>
+</html>
