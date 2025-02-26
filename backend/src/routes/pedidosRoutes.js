@@ -3,15 +3,11 @@ import pool from '../config/db.js';
 
 const router = express.Router();
 
-// Obtener todos los pedidos con detalles
+// SE NECESITA UNA QUERY QUE NOS TRAIGA LOS PEDIDOS CON TODO EL DETALLE
 router.get('/', async (req, res) => {
     try {
         const result = await pool.query(`
-            SELECT p.id AS pedido_id, c.nombre AS cliente, pr.nombre AS producto, d.cantidad, d.subtotal
-            FROM pedidos p
-            JOIN clientes c ON p.clientes_id = c.id
-            JOIN detalle_del_pedido d ON p.id = d.pedidos_id
-            JOIN productos pr ON d.productos_id = pr.id
+            // aqui va la query <
         `);
         res.json(result.rows);
     } catch (err) {
@@ -20,7 +16,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Crear un nuevo pedido
 router.post('/', async (req, res) => {
     const { clientes_id, productos } = req.body;
     try {
@@ -29,8 +24,6 @@ router.post('/', async (req, res) => {
             [clientes_id]
         );
         const pedido_id = pedidoResult.rows[0].id;
-
-        // Insertar los productos en detalle_del_pedido
         for (let producto of productos) {
             await pool.query(
                 'INSERT INTO detalle_del_pedido (pedidos_id, productos_id, cantidad, subtotal) VALUES ($1, $2, $3, $4)',
